@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/registro.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Registro</title>
+</head>
+
+<body>
+
+
+    <div class="containerRegister">
+        <form action="{{ url_for('registrar') }}" method='POST' class="register-form">
+            {{ form.hidden_tag() }}
+            <h2>Registro</h2>
+            <div class="input-box">
+                {{ form.nombre_usuario(size=20, placeholder="Nombre de Usuario") }}
+                {% for error in form.nombre_usuario.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="input-box">
+                {{ form.correo(size=20, placeholder="Correo Electrónico") }}
+                {% for error in form.correo.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="input-box">
+                
+                {{ form.contraseña(size=20, placeholder="Contraseña") }}
+                {% for error in form.contraseña.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="input-box">
+                {% for error in form.confirmar_contraseña.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+                {{ form.confirmar_contraseña(size=20, placeholder="Confirmar Contraseña") }}
+            </div>
+            <div class="button">
+                {{ form.submit(class="btn") }}
+            </div>
+            <p class="small-text">¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia Sesión</a></p>
+        </form>
+    </div>
+    
+    
+
+    <script src="/static/js/login-register.js"></script>
+    <script src="/static/js/alert2.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+        <script>
+            alert2('{{ message }}','error');
+        </script>>
+        {% endif %}
+        {% if category == 'success' %}
+        <script>
+            alert2('{{ message }}','success');
+        </script>
+        {% endif %}
+        {% endfor %}
+    {% endwith %}
+    
+</body>
+
+</html>
