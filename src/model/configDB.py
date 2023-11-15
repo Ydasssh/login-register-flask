@@ -3,10 +3,10 @@ import mysql.connector
 
 def connectionBD(): 
     miConexion = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        passwd='',
-        db='sistema_biblioteca'
+        host='b4pbgyqyjglpksuqdy8q-mysql.services.clever-cloud.com',
+        user='ub3w6izfiddhxnbj',
+        passwd='ADyfovOqNCuarqWa6vBa',
+        db='b4pbgyqyjglpksuqdy8q'
         )
     if miConexion:
         print("Conexion exitosa")
